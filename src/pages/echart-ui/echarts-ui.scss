@@ -1,0 +1,39 @@
+.box {
+  // 使弹性容器成为一个块级元素，定义在父元素上
+  display: flex;
+  // 使弹性容器成为行内元素，定义在父元素上
+  display: inline-flex;
+  // 排列方式row 父级宽度不够时允许item换行显示
+  flex-flow: row wrap;
+  width: 100vw;
+  justify-content: space-around; //水平居中（作用于容器）
+  align-items: flex-start;//垂直居中
+  // 使用弹性布局后 子元素的float clear vertical-align失效
+
+
+  .demo{
+    flex: 1;
+    background-color: #eeeeee;
+    // min-width: 200px;
+    // min-height: 400px;
+    // min-width:200px;
+    height: auto;
+    &:first-child{
+      margin: 10px;
+    }
+    // position: relative;
+    #echartdemo,#echartsPie, #echartsBar{
+      height: 400px;
+      min-width: 400px;
+      // width: 100vw;
+      // top: 400px;bottom: 0;
+      // left: 0;right: 0;
+      // margin: auto;
+      // position: absolute;
+
+    }
+  }
+  .demo + .demo {
+    margin: 10px;
+  }
+}
