@@ -23,7 +23,7 @@ export default {
         { name: '浙江', capital: '杭州', value: '400' },
         { name: '江西', capital: '南昌', value: '300' },
         { name: '湖北', capital: '武汉', value: '200' },
-        { name: '广西', capital: '南宁', value: '222' },
+        { name: '广西', capital: '南宁', value: '222', city: '柳州', valueL: '221' },
         { name: '甘肃', capital: '兰州', value: '333' },
         { name: '山西', capital: '太原', value: '400' },
         { name: '内蒙古', capital: '呼和浩特', value: '233' },
@@ -53,9 +53,8 @@ export default {
       let weatherURL = encodeURI('https://www.apiopen.top/weatherApi?city=' + provinceName)
       // let weatherURL2 = encodeURI(weatherURL)
       axios.get(weatherURL).then(data => {
-        // console.log(data.data.data)
         this.weatherData = data.data.data
-        // console.log(this.weatherData)
+        console.log(this.weatherData)
       }).catch(error => {
         console.log('请求出错！', error)
       })
@@ -77,7 +76,7 @@ export default {
             // console.log(data.value)
             let res = data.value
             data.data.value = this.weatherData.wendu // 对获取的数据进去取值显示 当天温度温度
-            res = data.seriesName + '<br/>' + data.data.capital + ':' + data.data.value + '<br/>'
+            res = data.seriesName + '<br/>' + data.data.capital + ':' + data.data.value + '<br/>' + data.data.city + ':' + data.data.valueL
             return res
           }
         },

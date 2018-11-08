@@ -6,6 +6,8 @@ import Weather from '@/pages/weather/weather.vue'
 import Antv from '@/pages/antv/antv.vue'
 import Antv2 from '@/pages/antv/antv2.vue'
 import HeatMap from '@/pages/antv/heatmap.vue'
+import Cities from '@/pages/cities/cities.vue'
+import WolrdMap from '@/pages/worldMap/worldMap.vue'
 
 Vue.use(Router)
 
@@ -40,6 +42,16 @@ export default new Router({
       path: '/heatmap',
       name: 'HeatMap',
       component: HeatMap
+    },
+    {
+      path: '/cities',
+      name: 'Cities',
+      component: Cities
+    },
+    {
+      path: '/worldMap',
+      name: 'WorldMap',
+      component: WolrdMap
     }
   ]
 })

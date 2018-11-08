@@ -35,4 +35,8 @@ html {
   让每个模块变得独立 更容易、灵活的样式便于维护 */
   font-size: 100%;
 }
+/*  去掉调用百度地图api默认在底部显示的copyright */
+.anchorBL, .BMap_cpyCtrl {
+  display: none !important;
+}
 </style>

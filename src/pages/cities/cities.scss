@@ -1,0 +1,24 @@
+#cities {
+  // color: red;
+  width: 50vw;
+  height: 100vh;
+  background-color: gainsboro;
+
+  .demo {
+    width: 50vw;
+    height: 100vh;
+
+    #cities-demo {
+      width: 50vw;
+      height: 100vh;
+
+      //  由于引入此.scss文件是scope 局部的 没有起作用，故移至App.vue
+      // .ec-extension-bmap {
+      //   .anchorBL,
+      //   .BMap_cpyCtrl {
+      //     display: none !important;
+      //   }
+      // }
+    }
+  }
+}

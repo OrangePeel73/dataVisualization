@@ -91,6 +91,8 @@ module.exports = {
   },
   externals: {
     'AMap': 'AMap',
-    'AMapUI': 'AMapUI'
+    'AMapUI': 'AMapUI',
+    'BMap': 'BMap',
+    'BMap_Symbol_SHAPE_POINT': 'BMap_Symbol_SHAPE_POINT'
   }
 }
