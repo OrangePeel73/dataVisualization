@@ -992,6 +992,7 @@ export default {
           })
         }
       }
+      console.log(res)
       return res
     },
 
@@ -1124,8 +1125,9 @@ export default {
             type: 'scatter',
             roam: true, // 放大缩小
             coordinateSystem: 'bmap',
+            //  data : [{name: '', value: [val1, val2, val3]}, ]
             data: this.convertData(this.mydata),
-            // data: this.mydata,
+            // geoCoord : { '地点': [经度， 纬度]}
             geoCoord: this.geoCoordMap,
             symbolSize: function (val) {
               return val[2] / 10
@@ -1150,6 +1152,7 @@ export default {
             name: 'Top 5',
             type: 'effectScatter',
             coordinateSystem: 'bmap',
+            // data : [{name: '', value: [val1, val2, val3]},{]}]
             data: this.convertData(this.mydata.sort(function (a, b) {
               return b.value - a.value
             }).slice(0, 6)),

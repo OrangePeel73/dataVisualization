@@ -573,242 +573,77 @@ export default {
         '合肥': [117.27, 31.86],
         '武汉': [114.31, 30.52],
         '大庆': [125.03, 46.58]
+      },
+      // test
+      testData: {
+        '闫家洞村委会': ['110.797', '35.7042', '140882101214', 5.44],
+        '辉川村委会': ['114.948', '39.8782', '130726203215', 10.95]
       }
     }
   },
   mounted () {
-    this.getTemperature()
+    // this.getTemperature()
     this.drawWeather()
   },
   created () {
     // this.getTemperature()
+    this.testSpliceData(this.testData)
+    this.testDeleteData(this.testData)
   },
   methods: {
-    // 全国各地省级下钻到县的API
-    getTemperature () {
-      axios.get('/bigdata/demo').then(res => {
-        this.geoCoordMap = res.data
-      }).catch(error => {
-        console.log('请求出错！', error)
-      })
-    },
-
-    // sliceData (data) {
-    //   let a = []
-    //   for ( let item in data) {
-    //     let geoCoord = data[item].
-    //   }
-    // },
-    // 拼接数据
-    // 把mydata [{name: '北京', value: 2}] 与 this.geoCoordMap ['北京: [121.15, 31.89]]
-    // 拼为 [ '北京': [121.15, 31.89, 2]]
-    convertData (data) {
-      var res = []
+    // 1 mydata :截取数组，用于series.data[ {name: '', value:[val1, val2, val3]},{}]
+    testSpliceData (data) {
+      let res = []
       for (let item in data) {
-        let geoCoord = this.geoCoordMap[data[item].name]
+        data[item].splice(2, 1) // 删掉数据自带的id，从数组索引为2的开始删除1项
+        let geoCoord = data[item]
         if (geoCoord) {
           res.push({
-            name: data[item].name,
-            value: geoCoord.concat(data[item].value)
+            name: item,
+            value: geoCoord
           })
         }
       }
       return res
     },
+    // geoCoordMap: 去掉id 截取值数组 取出经纬度
+    testDeleteData (data) {
+      for (let item in data) {
+        data[item].splice(2, 2)
+      }
+      console.log(data)
+      return data
+    },
+
+    // 全国各地省级下钻到县的API
+    getTemperature () {
+      // console.log(1)
+      axios.get('/bigdata/demo').then(res => {
+        console.log(1)
+        this.geoCoordMap = res.data
+        console.log(res.data)
+      }).catch(error => {
+        console.log('请求出错！', error)
+      })
+    },
 
     // 1 画地图
     drawWeather () {
-      // let myChart = this.$echarts.init(document.getElementById('cities-demo'))
-      // let option = {
-      //   // backgroundColor: '#5b4c86', // 填充背景时会覆盖地图
-      //   title: {
-      //     text: '全国主要城市空气质量',
-      //     subtext: 'data from PM25.in',
-      //     sublink: 'http://www.pm25.in',
-      //     left: 'center'
-      //   },
-
-      //   // tooltip
-      //   tooltip: {
-      //     trigger: 'item'
-      //   },
-
-      //   bmap: {
-      //     center: [104.114129, 37.550339],
-      //     zoom: 5,
-      //     // mapType: 'world',
-      //     roam: true,
-      //     mapStyle: {
-      //       styleJson: [{
-      //         'featureType': 'water',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'color': '#d1d1d1'
-      //         }
-      //       }, {
-      //         'featureType': 'land',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'color': '#f3f3f3'
-      //         }
-      //       }, {
-      //         'featureType': 'railway',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'visibility': 'off'
-      //         }
-      //       }, {
-      //         'featureType': 'highway',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'color': '#fdfdfd'
-      //         }
-      //       }, {
-      //         'featureType': 'highway',
-      //         'elementType': 'labels',
-      //         'stylers': {
-      //           'visibility': 'off'
-      //         }
-      //       }, {
-      //         'featureType': 'arterial',
-      //         'elementType': 'geometry',
-      //         'stylers': {
-      //           'color': '#fefefe'
-      //         }
-      //       }, {
-      //         'featureType': 'arterial',
-      //         'elementType': 'geometry.fill',
-      //         'stylers': {
-      //           'color': '#fefefe'
-      //         }
-      //       }, {
-      //         'featureType': 'poi',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'visibility': 'off'
-      //         }
-      //       }, {
-      //         'featureType': 'green',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'visibility': 'off'
-      //         }
-      //       }, {
-      //         'featureType': 'subway',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'visibility': 'off'
-      //         }
-      //       }, {
-      //         'featureType': 'manmade',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'color': '#d1d1d1'
-      //         }
-      //       }, {
-      //         'featureType': 'local',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'color': '#d1d1d1'
-      //         }
-      //       }, {
-      //         'featureType': 'arterial',
-      //         'elementType': 'labels',
-      //         'stylers': {
-      //           'visibility': 'off'
-      //         }
-      //       }, {
-      //         'featureType': 'boundary',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'color': '#fefefe'
-      //         }
-      //       }, {
-      //         'featureType': 'building',
-      //         'elementType': 'all',
-      //         'stylers': {
-      //           'color': '#d1d1d1'
-      //         }
-      //       }, {
-      //         'featureType': 'label',
-      //         'elementType': 'labels.text.fill',
-      //         'stylers': {
-      //           'color': '#999999'
-      //         }
-      //       }]
-      //     }
-      //   },
-      //   //  series
-      //   series: [
-      //     {
-      //       name: 'pm2.5',
-      //       type: 'scatter',
-      //       roam: true, // 放大缩小
-      //       coordinateSystem: 'bmap',
-      //       data: this.convertData(this.mydata),
-      //       // data: this.mydata,
-      //       geoCoord: this.geoCoordMap,
-      //       symbolSize: function (val) {
-      //         return val[2] / 10
-      //       },
-      //       label: {
-      //         normal: {
-      //           formatter: '{b}',
-      //           position: 'right',
-      //           show: false
-      //         },
-      //         emphasis: {
-      //           show: true
-      //         }
-      //       },
-      //       itemStyle: {
-      //         normal: {
-      //           color: 'purple'
-      //         }
-      //       }
-      //     },
-      //     {
-      //       name: 'Top 5',
-      //       type: 'effectScatter',
-      //       coordinateSystem: 'bmap',
-      //       data: this.convertData(this.mydata.sort(function (a, b) {
-      //         return b.value - a.value
-      //       }).slice(0, 6)),
-      //       symbolSize: function (val) {
-      //         return val[2] / 10
-      //       },
-      //       showEffectOn: 'render',
-      //       rippleEffect: {
-      //         brushType: 'stroke'
-      //       },
-      //       hoverAnimation: true,
-      //       label: {
-      //         normal: {
-      //           formatter: '{b}',
-      //           position: 'right',
-      //           show: true
-      //         }
-      //       },
-      //       itemStyle: {
-      //         normal: {
-      //           color: 'purple',
-      //           shadowBlur: 10,
-      //           shadowColor: '#333'
-      //         }
-      //       },
-      //       zlevel: 1
-      //     }
-      //   ]
-      // }
       let vm = this
+      let myChart = vm.$echarts.init(document.getElementById('cities-demo'))
+      myChart.setOption(vm.option)
+      let a = myChart.getModel().getComponent('bmap').getBMap()
+      a.addControl(new BMap.MapTypeControl()) // 右上角的按钮选择 ‘卫星’ ‘地标’
+      myChart.showLoading()
       axios.get('/bigdata/demo').then(res => {
-        // this.geoCoordMap = res.data
+        myChart.hideLoading()
+        console.log(1)
         console.log(res.data)
-        vm.option.series[0].data = res.data
-        let myChart = vm.$echarts.init(document.getElementById('cities-demo'))
-        myChart.setOption(vm.option)
-        let a = myChart.getModel().getComponent('bmap').getBMap()
-        a.addControl(new BMap.MapTypeControl()) // 右上角的按钮选择 ‘卫星’ ‘地标’
+        vm.option.series[0].data = this.testSpliceData(res.data)
+        vm.option.series[1].data = this.testSpliceData(res.data.sort((a, b) => {
+          return b.value - a.value
+        }).slice(0, 6))
+        vm.option.series[0].geoCoord = this.testDeleteData(res.data)
       }).catch(error => {
         console.log('请求出错！', error)
       })

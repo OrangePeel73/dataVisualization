@@ -15,6 +15,7 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect: '/worldMap',
       name: 'HelloWorld',
       component: HelloWorld
     },
