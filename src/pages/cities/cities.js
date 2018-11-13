@@ -241,8 +241,8 @@ export default {
       let vm = this
       let myChart = vm.$echarts.init(document.getElementById('cities-demo'))
       myChart.setOption(vm.option)
-      let a = myChart.getModel().getComponent('bmap').getBMap()
-      a.addControl(new BMap.MapTypeControl()) // 右上角的按钮选择 ‘卫星’ ‘地标’
+      // let a = myChart.getModel().getComponent('bmap').getBMap()
+      // a.addControl(new BMap.MapTypeControl()) // 右上角的按钮选择 ‘卫星’ ‘地标’
       myChart.showLoading()
       // 全国各地省级下钻到县的API
       axios.get('/bigdata/demo').then(res => {
@@ -255,7 +255,9 @@ export default {
         }).slice(0, 5)
         // 异步数据更新后再setOption才能刷新数据 否则地图不会响应数据
         myChart.setOption(vm.option, 2000)
-        console.log(vm.option.series[1].data)
+        // console.log(vm.option.series[1].data)
+        let a = myChart.getModel().getComponent('bmap').getBMap()
+        a.addControl(new BMap.MapTypeControl()) // 右上角的按钮选择 ‘卫星’ ‘地标’
       }).catch(error => {
         myChart.hideLoading()
         console.log('请求出错！', error)
