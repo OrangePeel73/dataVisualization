@@ -9,12 +9,12 @@ export default {
   data () {
     return {
       mydata: [{
-        name: '海门',
-        value: 9
+        name: '大罗村委会',
+        value: 400
       },
       {
-        name: '鄂尔多斯',
-        value: 12
+        name: '洪村村委会',
+        value: 500
       },
       {
         name: '招远',
@@ -770,8 +770,8 @@ export default {
       }
       ],
       geoCoordMap: {
-        '海门': [121.15, 31.89],
-        '鄂尔多斯': [109.781327, 39.608266],
+        '大罗村委会': [116.327, 33.6271],
+        '洪村村委会': [118.633, 30.4483],
         '招远': [120.38, 37.35],
         '舟山': [122.207216, 29.985295],
         '齐齐哈尔': [123.97, 47.33],
@@ -984,9 +984,9 @@ export default {
     convertData (data) {
       var res = []
       for (let item in data) {
-        let geoCoord = this.geoCoordMap[data[item].name]
-        if (geoCoord) {
-          res.push({
+        let geoCoord = this.geoCoordMap[data[item].name] // [ ]去取出对应的value
+        if (geoCoord) { // 如果存在value
+          res.push({ // [name: '', value: [1,2,3 ]]
             name: data[item].name,
             value: geoCoord.concat(data[item].value)
           })
@@ -1129,6 +1129,7 @@ export default {
             data: this.convertData(this.mydata),
             // geoCoord : { '地点': [经度， 纬度]}
             geoCoord: this.geoCoordMap,
+            // 圆点大小
             symbolSize: function (val) {
               return val[2] / 10
             },
@@ -1136,6 +1137,7 @@ export default {
               normal: {
                 formatter: '{b}',
                 position: 'right',
+                //  是否显示name
                 show: false
               },
               emphasis: {
@@ -1159,8 +1161,8 @@ export default {
             symbolSize: function (val) {
               return val[2] / 10
             },
-            showEffectOn: 'render',
-            rippleEffect: {
+            showEffectOn: 'render', // 气泡
+            rippleEffect: { // 气泡动画效果
               brushType: 'stroke'
             },
             hoverAnimation: true,
