@@ -1,13 +1,27 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
     <router-view/>
+    <!-- <img src="./assets/logo.png">
+    <div>
+      <p>
+        If Element is successfully added to this project, you'll see an
+        <code v-text="'<el-button>'"></code>
+        below
+      </p>
+      <el-button>el-button</el-button>
+    </div>
+    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
 <script>
+import HelloWorld from './components/HelloWorld.vue'
+
 export default {
-  name: 'App'
+  name: 'app',
+  components: {
+    HelloWorld
+  }
 }
 </script>
 
@@ -22,15 +36,14 @@ export default {
   height: 100vh;
   /* margin-top: 60px; */
 }
-* {
-  margin:  0 auto;
+*{
+  margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
 }
-
 html {
-  /* 设置基本字体大小  后
-  用em设置文本元素字体大小 如h2 p
+ /* 设置基本字体大小  后
+ 用em设置文本元素字体大小 如h2 p
   用rem设置模块的字体大小 如一个div 或article等等
   让每个模块变得独立 更容易、灵活的样式便于维护 */
   font-size: 100%;

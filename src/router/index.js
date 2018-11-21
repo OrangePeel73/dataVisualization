@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// import HelloWorld from '@/components/HelloWorld'
+import Home from '@/pages/home/home.vue'
 import EchartDemo1 from '@/pages/echart-ui/echart-demo'
 import Weather from '@/pages/weather/weather.vue'
 import Antv from '@/pages/antv/antv.vue'
@@ -15,9 +16,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/worldMap',
-      name: 'HelloWorld',
-      component: HelloWorld
+      redirect: '/home',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
     },
     {
       path: '/echart-demo1',

@@ -1,0 +1,14 @@
+// 重置elementui
+.el-container {
+
+  .el-header,
+  .el-footer {
+    height: 3.5rem !important;
+    padding: 0; // 默认20
+  }
+
+  .el-main {
+    padding: 0;
+    height: calc(100vh - 7rem);
+  }
+}

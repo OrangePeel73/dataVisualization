@@ -11,6 +11,8 @@ import 'echarts/lib/chart/map' // echarts 地图
 import 'echarts/map/js/china.js' // echarts 地图必须引入 否则不会显示地图
 import 'echarts/map/js/world.js' // echarts 地图必须引入 否则不会显示地图
 import VueAMap from 'vue-amap'
+import './plugins/element.js'
+import '@/assets/styles'
 
 Vue.use(VueAMap)
 VueAMap.initAMapApiLoader({

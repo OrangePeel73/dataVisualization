@@ -1,20 +1,21 @@
 {
   "name": "echart",
   "version": "1.0.0",
+  "private": true,
   "description": "A Vue.js project",
   "author": "gezuxia <gezuxia@163.com>",
-  "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "start": "npm run dev"
   },
   "dependencies": {
     "@antv/data-set": "^0.9.6",
     "@antv/g2": "^3.3.0",
     "axios": "^0.18.0",
     "echarts": "^4.1.0",
+    "element-ui": "^2.4.5",
     "vue": "^2.5.2",
     "vue-amap": "^0.5.8",
     "vue-g2": "^0.1.21",
@@ -62,6 +63,7 @@
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
+    "vue-cli-plugin-element": "^1.0.0",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
@@ -70,13 +72,13 @@
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
   },
-  "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  }
 }
