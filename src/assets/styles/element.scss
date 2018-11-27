@@ -9,6 +9,10 @@
 
   .el-main {
     padding: 0;
-    height: calc(100vh - 7rem);
+    height: 100vh;
+  }
+
+  .el-row {
+    margin: 0 !important;
   }
 }

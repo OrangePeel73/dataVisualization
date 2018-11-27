@@ -4,71 +4,88 @@ height: 100vh;
 
   .home-container, .el-container {
     width: 100vw;
-    // header
-    .header, .el-header {
-        width: 100vw;
-        background-color: rgba(0, 0, 0, 0.5);
-        position: fixed;
-        top: 0;
-        .el-row {
-          height: 100%;
-          .el-col{
-            height: 100%;
-            // line-height: 3.5rem;
-            .grid-content, .bg-purple{
-              // background-color: forestgreen;
-              height: 100%;
-              display: flex;
-              align-items: center;
-              text-align: center;
 
-            }
-            .logo-container {
-              justify-content: flex-start;
-              .logo {
-                max-width: 10rem;
-                min-width: 3rem;
-                // margin-left: 1rem;
-              }
-            }
-            .title-container {
-              justify-content: center;
-              .title {
-                // text-align: center;
-              }
-            }
-          }
-        }
-    }
     // main
     .main, .el-main {
       width: 100vw;
-      margin-top: 3.5rem;
-      background-color: antiquewhite;
-    }
-    // footer
-    .footer, .el-footer {
-      width: 100vw;
-      // background-color: cadetblue;
-      .el-row {
-        height: 100%;
-        .el-col {
+
+      .item-row {
+        width: 100vw;
+        height: 100vh;
+        // position: absolute;
+        // top: 0;
+
+        // left
+        .left-col {
           height: 100%;
-          // line-height: 3.5rem;
-          .copyright-container {
-            // background-color: forestgreen;
+          .bg-purple {
+            width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            p{
-              color: rgba(0, 0, 0, 0.3);
-              font-size: 1em;
+            // 左上
+            .left-top-container {
+              background-color: rgba(0, 0, 0, 0.4);
+              border: 2px solid rgba(255, 255, 255, 0.5);
+              height: 48vh;
+              .left-top {
+                height: 100%;
+              }
+            }
+
+            // 左下
+            .left-bottom-container {
+              background-color: rgba(0, 0, 0, 0.4);
+              height: 48vh;
+              border: 2px solid rgba(255, 255, 255, 0.5);
+              .left-bottom {
+                height: 100%;
+              }
             }
           }
         }
+
+        //center
+        .center-col {
+          // background-color: slategray;
+          height: 100%;
+          .bg-purple-light {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        // right
+        .right-col {
+          // background-color: wheat;
+          height: 100%;
+            .bg-purple {
+              width: 100%;
+              height: 100%;
+
+              // 右上
+              .right-top-container {
+                background-color: rgba(0, 0, 0, 0.4);
+                border: 2px solid rgba(255, 255, 255, 0.5);
+                height: 48vh;
+
+                .right-top {
+                  height: 100%;
+                }
+              }
+
+              // 右下
+              .right-bottom-container {
+                background-color: rgba(0, 0, 0, 0.4);
+                height: 48vh;
+                border: 2px solid rgba(255, 255, 255, 0.5);
+
+                .right-bottom {
+                  height: 100%;
+                }
+              }
+            }
+        }
       }
     }
+
   }
 }

@@ -10,12 +10,13 @@ export default {
   data () {
     return {
       option: {
-        // backgroundColor: '#5b4c86', // 填充背景时会覆盖地图
+        // backgroundColor: 'rgba(0, 0, 0, 0.5)', // 填充背景时会覆盖地图
         title: {
           text: '全国试验基地温度监控',
           subtext: 'data from DaoCloud.io',
           sublink: 'https://www.daocloud.io',
-          left: 'center'
+          left: 'center',
+          color: '#fff'
         },
 
         // tooltip
@@ -37,99 +38,132 @@ export default {
               'featureType': 'water',
               'elementType': 'all',
               'stylers': {
-                'color': '#d1d1d1'
+                'color': '#044161'
               }
-            }, {
+            },
+            {
               'featureType': 'land',
               'elementType': 'all',
               'stylers': {
-                'color': '#f3f3f3'
+                'color': '#004981'
               }
-            }, {
+            },
+            {
+              'featureType': 'boundary',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#064f85'
+              }
+            },
+            {
               'featureType': 'railway',
               'elementType': 'all',
               'stylers': {
                 'visibility': 'off'
               }
-            }, {
+            },
+            {
               'featureType': 'highway',
-              'elementType': 'all',
+              'elementType': 'geometry',
               'stylers': {
-                'color': '#fdfdfd'
+                'color': '#004981'
               }
-            }, {
+            },
+            {
+              'featureType': 'highway',
+              'elementType': 'geometry.fill',
+              'stylers': {
+                'color': '#005b96',
+                'lightness': 1
+              }
+            },
+            {
               'featureType': 'highway',
               'elementType': 'labels',
               'stylers': {
                 'visibility': 'off'
               }
-            }, {
+            },
+            {
               'featureType': 'arterial',
               'elementType': 'geometry',
               'stylers': {
-                'color': '#fefefe'
+                'color': '#004981'
               }
-            }, {
+            },
+            {
               'featureType': 'arterial',
               'elementType': 'geometry.fill',
               'stylers': {
-                'color': '#fefefe'
+                'color': '#00508b'
               }
-            }, {
+            },
+            {
               'featureType': 'poi',
               'elementType': 'all',
               'stylers': {
                 'visibility': 'off'
               }
-            }, {
+            },
+            {
               'featureType': 'green',
               'elementType': 'all',
               'stylers': {
+                'color': '#056197',
                 'visibility': 'off'
               }
-            }, {
+            },
+            {
               'featureType': 'subway',
               'elementType': 'all',
               'stylers': {
                 'visibility': 'off'
               }
-            }, {
+            },
+            {
               'featureType': 'manmade',
               'elementType': 'all',
               'stylers': {
-                'color': '#d1d1d1'
+                'visibility': 'off'
               }
-            }, {
+            },
+            {
               'featureType': 'local',
               'elementType': 'all',
               'stylers': {
-                'color': '#d1d1d1'
+                'visibility': 'off'
               }
-            }, {
+            },
+            {
               'featureType': 'arterial',
               'elementType': 'labels',
               'stylers': {
                 'visibility': 'off'
               }
-            }, {
+            },
+            {
               'featureType': 'boundary',
-              'elementType': 'all',
+              'elementType': 'geometry.fill',
               'stylers': {
-                'color': '#fefefe'
+                'color': '#029fd4'
               }
-            }, {
+            },
+            {
               'featureType': 'building',
               'elementType': 'all',
               'stylers': {
-                'color': '#d1d1d1'
+                'color': '#1a5787'
               }
-            }, {
-              'featureType': 'label',
-              'elementType': 'labels.text.fill',
-              'stylers': {
-                'color': '#999999'
-              }
-            }]
+            }
+            // 地名
+            // {
+            //   'featureType': 'label',
+            //   'elementType': 'all',
+            //   'stylers': {
+            //     'visibility': 'off'
+            //   }
+            // }
+            ]
           }
         },
         //  series
@@ -201,13 +235,16 @@ export default {
       }
     }
   },
+
   mounted () {
     this.drawWeather()
   },
+
   created () {
-    this.testSpliceData(this.testData)
-    this.testDeleteData(this.testData)
+    // this.testSpliceData(this.testData)
+    // this.testDeleteData(this.testData)
   },
+
   methods: {
     // 1 mydata :截取数组，用于series.data[ {name: '', value:[val1, val2, val3]},{。。。}]
     testSpliceData (data) {
@@ -228,6 +265,7 @@ export default {
       // console.log('geocoord:' + Array.prototype.isPrototypeOf(res)) // true array
       return res
     },
+
     // geoCoordMap: 去掉id 截取值数组 取出经纬度 ：{'北京': [经度，纬度]}
     testDeleteData (data) {
       for (let item in data) {
@@ -244,6 +282,7 @@ export default {
       // let a = myChart.getModel().getComponent('bmap').getBMap()
       // a.addControl(new BMap.MapTypeControl()) // 右上角的按钮选择 ‘卫星’ ‘地标’
       myChart.showLoading()
+
       // 全国各地省级下钻到县的API
       axios.get('/bigdata/demo').then(res => {
         myChart.hideLoading()
@@ -253,8 +292,7 @@ export default {
         vm.option.series[1].data = this.testSpliceData(res.data).sort((a, b) => {
           return b.value[2] - a.value[2] // top 5
         }).slice(0, 5)
-        // 异步数据更新后再setOption才能刷新数据 否则地图不会响应数据
-        myChart.setOption(vm.option, 2000)
+        myChart.setOption(vm.option, 2000) // 异步数据更新后再setOption才能刷新数据 否则地图不会响应数据
         // console.log(vm.option.series[1].data)
         let a = myChart.getModel().getComponent('bmap').getBMap()
         a.addControl(new BMap.MapTypeControl()) // 右上角的按钮选择 ‘卫星’ ‘地标’
