@@ -1,6 +1,5 @@
 import TopHeader from '@/components/header/TopHeader.vue'
 import BottomFooter from '@/components/footer/BottomFooter.vue'
-import WorldMap from '@/components/WorldMap/WorldMap.vue'
 // import axios from 'axios'
 // import BMap from 'BMap'
 
@@ -10,8 +9,7 @@ require('echarts/dist/extension/bmap.js')
 export default {
   components: {
     TopHeader,
-    BottomFooter,
-    WorldMap
+    BottomFooter
   },
   data () {
     return {
