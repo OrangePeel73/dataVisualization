@@ -103,10 +103,13 @@ export default {
                 display: flex;
                 align-items: center;
                 background-color: rgba(0, 0, 0, 0.4);
+
+                &:hover {
+                  cursor: pointer;
+                }
                 .logo {
                 max-width: 10rem;
                 min-width: 3rem;
-                // margin-left: 1rem;
                 }
               }
             }
