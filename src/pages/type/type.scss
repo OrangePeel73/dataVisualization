@@ -12,6 +12,7 @@
     // col
     .select-wrap {}
   }
+
   // img row
   .cornImg-container {
     width: 100%;
@@ -19,28 +20,31 @@
     align-items: center;
     .cornImg-wrap {
       .cornImg {
-        // border: 1px solid #eee;
-        .cornImage {
-          height: 5rem;
-          width: auto
+        .box-card {
+          margin: 1rem 0;
+           .cornImage {
+             height: 5rem;
+             width: auto
+           }
         }
       }
     }
   }
 
-  // echarts row
+  // corns row
   .type-container {
     width: 100%;
     height: 100%;
+    align-items: center;
+
       // col
     .type-wrap {
-      width: 100%;
-      height: 100%;
+      // width: 100%;
+      // height: 100%;
 
       .type {
-        width: 100%;
-        height: 100%;
-        background-color: burlywood;
+        // width: 100%;
+        // height: 100%;
 
         .select {
           margin: 5rem;

@@ -106,14 +106,14 @@
       justify="center">
       <el-col
         class="cornImg-wrap"
-        :xs="14" :sm="14" :md="14" :lg="18" :xl="18">
+        :xs="20" :sm="20" :md="20" :lg="20" :xl="20">
         <div
           class="cornImg grid-content bg-purple">
           <el-card class="box-card">
             <el-table
-              :data="getCornInfo"
+              :data="getCornImg"
               stripe
-              v-loading="loading"
+              v-loading="loadingCornImg"
               style="width: 100%">
               <el-table-column
                 label="农作物"
@@ -142,9 +142,6 @@
               </el-table-column>
             </el-table>
           </el-card>
-          <!-- <img
-            class="cornImage"
-            :src="getCornInfo.image"> -->
         </div>
       </el-col>
     </el-row>
@@ -153,6 +150,8 @@
     <!-- echarts -->
     <el-row
       class="type-container"
+      type="flex"
+      justify="center"
       :gutter="10">
       <el-col
         class="type-wrap"
@@ -160,6 +159,36 @@
         <div
           :id="type.id"
           class="type grid-content bg-purple">
+          <el-card class="box-card">
+            <el-table
+              :data="getCornInfo"
+              stripe
+              v-loading="loadingCornInfo"
+              style="width: 100%">
+              <el-table-column
+                label="农作物"
+                width="180">
+                <template slot-scope="scope">
+                  <span v-if="scope.row.corn === 'corn'">玉米</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="病状"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                prop="info"
+                label="病状描述"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                label="病状图片">
+                <template slot-scope="scope">
+                </template>
+              </el-table-column>
+            </el-table>
+          </el-card>
         </div>
       </el-col>
     </el-row>

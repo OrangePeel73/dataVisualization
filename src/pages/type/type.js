@@ -8,7 +8,8 @@ export default {
       type: {
         id: 'type-echarts'
       },
-      loading: false,
+      loadingCornImg: false,
+      loadingCornInfo: false,
       // 搜索病状
       selectOptions: {
         selectCategory: '',
@@ -18,6 +19,8 @@ export default {
         selectPartFruits: []
       },
       // 搜索病状图片
+      getCornImg: [],
+      // 获取的病状分析
       getCornInfo: [],
       // 下拉框value
       cropsOptions: {
@@ -131,17 +134,17 @@ export default {
     handleGetImg (value) {
       const params = { }
       // console.log(value)
-      this.loading = true
+      this.loadingCornImg = true
       if (value.length && this.selectOptions.selectCategory) {
         params.corns = this.selectOptions.selectCategory
         value = parseInt(value[value.length - 1])
         params.number = value
         getCornsImg(params).then(res => {
           res._source.corn = this.selectOptions.selectCategory
-          this.getCornInfo.push(res._source)
-          this.loading = false
+          this.getCornImg.push(res._source)
+          this.loadingCornImg = false
         }).catch(err => {
-          this.loading = false
+          this.loadingCornImg = false
           console.log(err)
           this.$message({
             showClose: true,
@@ -149,9 +152,9 @@ export default {
             type: 'error'
           })
         })
-        this.getCornInfo = []
+        this.getCornImg = []
       } else {
-        this.loading = false
+        this.loadingCornImg = false
         console.log('需要选择农作物或查询的特征')
       }
     }
