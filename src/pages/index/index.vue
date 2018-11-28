@@ -3,7 +3,7 @@
     <el-row
       class="index-container"
       type="flex"
-      justify="space-around">
+      justify="center">
 
       <el-col
         class="templature-wrap wrap"

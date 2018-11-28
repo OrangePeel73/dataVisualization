@@ -1,0 +1,55 @@
+#type {
+  width: 100%;
+  height: 100%;
+  margin-top: 3.5rem;
+
+  //  下拉框 row
+  .select-container {
+    width: 100%;
+    min-height: 4rem;
+    background-color: gray;
+    align-items: center;
+    // col
+    .select-wrap {}
+  }
+  // img row
+  .cornImg-container {
+    width: 100%;
+    background-color: #fafafa;
+    align-items: center;
+    .cornImg-wrap {
+      .cornImg {
+        width: 15rem;
+        min-height: 15rem;
+        border: 1px solid #eee;
+        .cornImage {
+          width: 100%;
+          height: auto;
+
+        }
+      }
+    }
+  }
+
+  // echarts row
+  .type-container {
+    width: 100%;
+    height: 100%;
+      // col
+    .type-wrap {
+      width: 100%;
+      height: 100%;
+
+      .type {
+        width: 100%;
+        height: 100%;
+        background-color: burlywood;
+
+        .select {
+          margin: 5rem;
+        }
+      }
+
+    }
+  }
+}

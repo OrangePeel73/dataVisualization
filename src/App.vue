@@ -84,7 +84,8 @@ export default {
         width: 100vw;
         position: absolute;
         top: 0;
-        z-index: 1;
+        background-color: darkcyan;
+        // z-index: 1;
 
         .el-row {
           height: 100%;
@@ -103,6 +104,7 @@ export default {
                 display: flex;
                 align-items: center;
                 background-color: rgba(0, 0, 0, 0.4);
+                z-index: 1;
 
                 &:hover {
                   cursor: pointer;
@@ -124,14 +126,15 @@ export default {
     .main, .el-main {
       width: 100vw;
       background-color: antiquewhite;
-      // min-height: calc(100vh - 7rem);
+      // height: auto;
+      min-height: calc(100vh - 4rem);
     }
 
     /* footer */
     .footer, .el-footer {
       width: 100vw;
-      position: absolute;
-      bottom: 0;
+      // position: absolute;
+      // bottom: 0;
       border: 1px solid #ccc;
       .el-row {
         height: 100%;
