@@ -109,9 +109,42 @@
         :xs="14" :sm="14" :md="14" :lg="18" :xl="18">
         <div
           class="cornImg grid-content bg-purple">
-          <img
+          <el-card class="box-card">
+            <el-table
+              :data="getCornInfo"
+              stripe
+              v-loading="loading"
+              style="width: 100%">
+              <el-table-column
+                label="农作物"
+                width="180">
+                <template slot-scope="scope">
+                  <span v-if="scope.row.corn === 'corn'">玉米</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="病状"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                prop="info"
+                label="病状描述"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                label="病状图片">
+                <template slot-scope="scope">
+                  <img
+                  class="cornImage"
+                  :src="scope.row.image">
+                </template>
+              </el-table-column>
+            </el-table>
+          </el-card>
+          <!-- <img
             class="cornImage"
-            :src="getCornInfo.image">
+            :src="getCornInfo.image"> -->
         </div>
       </el-col>
     </el-row>

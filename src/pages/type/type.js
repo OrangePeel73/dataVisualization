@@ -1,6 +1,6 @@
 // import itemImg from '@/assets/images/item.jpg'
 import { getCornsImg } from '@/service/api/corns.js'
-let Base64 = require('js-base64').Base64
+// let Base64 = require('js-base64').Base64
 
 export default {
   data () {
@@ -8,6 +8,7 @@ export default {
       type: {
         id: 'type-echarts'
       },
+      loading: false,
       // 搜索病状
       selectOptions: {
         selectCategory: '',
@@ -17,7 +18,7 @@ export default {
         selectPartFruits: []
       },
       // 搜索病状图片
-      getCornInfo: {},
+      getCornInfo: [],
       // 下拉框value
       cropsOptions: {
         // 农作物种类
@@ -129,14 +130,18 @@ export default {
     },
     handleGetImg (value) {
       const params = { }
-      console.log(value)
+      // console.log(value)
+      this.loading = true
       if (value.length && this.selectOptions.selectCategory) {
         params.corns = this.selectOptions.selectCategory
         value = parseInt(value[value.length - 1])
         params.number = value
         getCornsImg(params).then(res => {
-          this.getCornInfo = res._source
+          res._source.corn = this.selectOptions.selectCategory
+          this.getCornInfo.push(res._source)
+          this.loading = false
         }).catch(err => {
+          this.loading = false
           console.log(err)
           this.$message({
             showClose: true,
@@ -144,7 +149,9 @@ export default {
             type: 'error'
           })
         })
+        this.getCornInfo = []
       } else {
+        this.loading = false
         console.log('需要选择农作物或查询的特征')
       }
     }
