@@ -133,9 +133,12 @@ export default {
     },
     handleGetImg (value) {
       const params = { }
-      // console.log(value)
+      console.log(value)
       this.loadingCornImg = true
       if (value.length && this.selectOptions.selectCategory) {
+        // for (let i in this.selectOptions) {
+        //   console.log(i)
+        // }
         params.corns = this.selectOptions.selectCategory
         value = parseInt(value[value.length - 1])
         params.number = value
@@ -155,6 +158,11 @@ export default {
         this.getCornImg = []
       } else {
         this.loadingCornImg = false
+        // this.$message({
+        //   showClose: true,
+        //   message: '请选择农作物以查看详细信息！',
+        //   type: 'warning'
+        // })
         console.log('需要选择农作物或查询的特征')
       }
     }

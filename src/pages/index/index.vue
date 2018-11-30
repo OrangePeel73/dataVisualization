@@ -10,12 +10,12 @@
         :xs="20" :sm="10" :md="10" :lg="9" :xl="9">
         <div
           class="grid-content bg-purple"
-          :style="{'background-image': `url('${itemImg}')`}"
+          :style="{'background-image': `url('${ title.templature.img_url}')`}"
           @click="goToRouter('/cities')">
           <div class="animate-mask"></div>
           <div class="animate-text">
             <h1 class="animate-title">{{ title.templature.title }}</h1>
-            <p class="animate-description">description</p>
+            <p class="animate-description">{{ title.corns.description }}</p>
           </div>
         </div>
       </el-col>
@@ -25,12 +25,12 @@
         :xs="20" :sm="10" :md="10" :lg="9" :xl="9">
         <div
           class="grid-content bg-purple-light"
-          :style="{'background-image': `url('${itemImg}')`}"
+          :style="{'background-image': `url('${title.corns.img_url}')`}"
           @click="goToRouter('/type')">
           <div class="animate-mask"></div>
           <div class="animate-text">
-            <h1 class="animate-title">title</h1>
-            <p class="animate-description">description</p>
+            <h1 class="animate-title">{{ title.corns.title }}</h1>
+            <p class="animate-description">{{ title.corns.description }}</p>
           </div>
         </div>
       </el-col>

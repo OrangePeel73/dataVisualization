@@ -1,6 +1,9 @@
 <template>
-  <div id="app">
-    <el-container class="app-container">
+  <div
+    id="app"
+    :style="{'background-image': `url('${BgImg}')`}">
+    <el-container
+      class="app-container">
 
       <!-- header -->
       <el-header class="header">
@@ -41,6 +44,7 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import Logo from '@/assets/images/daocloud.png'
+import BgImg from '@/assets/images/bg.jpeg'
 
 export default {
   name: 'app',
@@ -50,6 +54,7 @@ export default {
   data () {
     return {
       Logo,
+      BgImg,
       copyright: 'Copyright ©️ DaoCloud道客网络科技有限公司保留所有权利'
     }
   },
@@ -73,7 +78,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   width: 100vw;
-  height: 100vh;
+  height: auto;
+  background-position: center center;
+  /* 背景图垂直水平居中*/
+  background-repeat: no-repeat;
+  background-size: cover;
   /* margin-top: 60px; */
 }
   .app-container,.el-container {
@@ -82,9 +91,9 @@ export default {
      /* header */
     .header, .el-header {
         width: 100vw;
-        position: absolute;
-        top: 0;
-        background-color: darkcyan;
+        // position: absolute;
+        // top: 0;
+        // background-color: darkcyan;
         // z-index: 1;
 
         .el-row {
@@ -103,7 +112,7 @@ export default {
               .logo-container {
                 display: flex;
                 align-items: center;
-                background-color: rgba(0, 0, 0, 0.4);
+                // background-color: rgba(0, 0, 0, 0.4);
                 z-index: 1;
 
                 &:hover {
@@ -125,17 +134,15 @@ export default {
     /* main */
     .main, .el-main {
       width: 100vw;
-      background-color: antiquewhite;
-      // height: auto;
-      min-height: calc(100vh - 4rem);
+      // background-color:#fafafa;
+      height: auto;
+      min-height: calc(100vh - 7rem);
     }
 
     /* footer */
     .footer, .el-footer {
       width: 100vw;
-      // position: absolute;
-      // bottom: 0;
-      border: 1px solid #ccc;
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
       .el-row {
         height: 100%;
         .el-col {
@@ -147,7 +154,7 @@ export default {
             justify-content: center;
             text-align: center;
             p{
-              color: rgba(0, 0, 0, 0.4);
+              color: rgba(255, 255, 255, 0.5);
               font-size: 1em;
             }
           }
