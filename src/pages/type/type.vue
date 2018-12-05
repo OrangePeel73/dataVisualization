@@ -12,7 +12,7 @@
         justify="center">
         <el-col
           class="select-wrap"
-          :xs="24" :sm="24" :md="24" :lg="20" :xl="20">
+          :xs="24" :sm="24" :md="24" :lg="20" :xl="24">
           <div
             class="selete grid-content bg-purple">
             <!-- 农作物种类 -->
@@ -92,7 +92,7 @@
             <!--submit button -->
             <el-button
               type="primary"
-              @click="selectSubmit">
+              @click="selectSubmit(selectOptions)">
               确认
             </el-button>
 
@@ -162,22 +162,23 @@
             <p class="corns-title">农作物病状分析</p>
             <el-card class="box-card">
               <el-table
-                :data="getCornInfo"
+                :data="getCornAnalysis.hits"
                 stripe
-                v-loading="loadingCornInfo"
+                v-loading="loadingCornAnalysis"
                 style="width: 100%">
                 <el-table-column
                   label="农作物">
                   <template slot-scope="scope">
-                    <span v-if="scope.row.corn === 'corn'">玉米</span>
+                    <!-- <span v-if="scope.row.corn === 'corn'">玉米</span> -->
+                    <span v-if="scope.row._source.crop === 'corn'"> 玉米</span>
                   </template>
                 </el-table-column>
                 <el-table-column
-                  prop="name"
+                  prop="_source.name"
                   label="病状">
                 </el-table-column>
                 <el-table-column
-                  prop="info"
+                  prop="_source.describe"
                   label="病状描述">
                 </el-table-column>
                 <el-table-column

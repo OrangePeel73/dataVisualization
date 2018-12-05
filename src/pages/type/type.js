@@ -1,5 +1,6 @@
 // import itemImg from '@/assets/images/item.jpg'
-import { getCornsImg } from '@/service/api/corns.js'
+import {
+  getCornsImg, getCornsIllness, getCornsAnalysis } from '@/service/api/corns.js'
 // let Base64 = require('js-base64').Base64
 
 export default {
@@ -9,7 +10,7 @@ export default {
         id: 'type-echarts'
       },
       loadingCornImg: false,
-      loadingCornInfo: false,
+      loadingCornAnalysis: false,
       // 搜索病状
       selectOptions: {
         selectCategory: '',
@@ -22,6 +23,24 @@ export default {
       getCornImg: [],
       // 获取的病状分析
       getCornInfo: [],
+      //  存储农作物病状的id
+      illId: {
+        'query': {
+          'filtered': {
+            'query': {
+              'match': {
+                'ill_id': null
+              }
+            }
+          }
+        }
+      },
+      // 存储农作物病状分析
+      getCornAnalysis: {
+        hits: [],
+        max_score: null,
+        total: null
+      },
       // 下拉框value
       cropsOptions: {
         // 农作物种类
@@ -128,17 +147,45 @@ export default {
     }
   },
   methods: {
-    selectSubmit () {
-      console.log(1)
+
+    //  获取农作物病状分析
+    selectSubmit (params) {
+      const data = {}
+      data.params = params
+      this.loadingCornAnalysis = true
+      getCornsIllness(data).then(res => {
+        this.illId.query.filtered.query.match.ill_id = res
+
+        getCornsAnalysis(this.illId).then(response => {
+          console.log(response)
+          this.getCornAnalysis = response.hits
+          console.log(this.getCornAnalysis)
+          this.loadingCornAnalysis = false
+        }).catch(error => {
+          this.loadingCornAnalysis = false
+          console.log(error)
+          this.$message({
+            showClose: true,
+            message: '请求失败，请检查后再操作！',
+            type: 'error'
+          })
+        })
+      }).catch(error => {
+        this.loadingCornAnalysis = false
+        console.log(error)
+        this.$message({
+          showClose: true,
+          message: '请求失败，请检查后再操作！',
+          type: 'error'
+        })
+      })
     },
+
+    // 获取病状的图片
     handleGetImg (value) {
       const params = { }
-      console.log(value)
       this.loadingCornImg = true
       if (value.length && this.selectOptions.selectCategory) {
-        // for (let i in this.selectOptions) {
-        //   console.log(i)
-        // }
         params.corns = this.selectOptions.selectCategory
         value = parseInt(value[value.length - 1])
         params.number = value
@@ -158,11 +205,6 @@ export default {
         this.getCornImg = []
       } else {
         this.loadingCornImg = false
-        // this.$message({
-        //   showClose: true,
-        //   message: '请选择农作物以查看详细信息！',
-        //   type: 'warning'
-        // })
         console.log('需要选择农作物或查询的特征')
       }
     }

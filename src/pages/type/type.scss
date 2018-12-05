@@ -30,6 +30,11 @@
           display: flex;
           flex-wrap: wrap;
 
+          .select {
+            display: flex;
+            align-items: center
+          }
+
         }
         .selete:after {
           content: '';
