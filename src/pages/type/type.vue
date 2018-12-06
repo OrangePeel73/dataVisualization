@@ -15,12 +15,14 @@
           :xs="24" :sm="24" :md="24" :lg="20" :xl="24">
           <div
             class="selete grid-content bg-purple">
+
             <!-- 农作物种类 -->
             <el-select
               class="select"
               v-model="selectOptions.selectCategory"
               clearable
-              placeholder="请选择农作物种类">
+              placeholder="请选择农作物种类"
+              @change="handleGetImg">
                 <el-option
                   v-for="item in cropsOptions.cropsCategory"
                   :key="item.value"
@@ -113,27 +115,35 @@
             class="cornImg grid-content bg-purple">
             <p class="corns-title">农作物病状特征</p>
             <el-card class="box-card">
+
               <el-table
                 :data="getCornImg"
                 stripe
                 v-loading="loadingCornImg"
                 style="width: 100%">
+
                 <el-table-column
                   label="农作物">
                   <template slot-scope="scope">
                     <span v-if="scope.row.corn === 'corn'">玉米</span>
+                    <span v-if="scope.row.corn === 'onion'">洋葱</span>
+                    <span v-if="scope.row.corn === 'soy'">大豆</span>
+                    <span v-if="scope.row.corn === 'garlic'">大蒜</span>
                   </template>
                 </el-table-column>
+
                 <el-table-column
                   label="病状">
                   <template slot-scope="scope">
                     <el-tag type="info">{{ scope.row.name }}</el-tag>
                   </template>
                 </el-table-column>
+
                 <el-table-column
                   prop="info"
                   label="病状描述">
                 </el-table-column>
+
                 <el-table-column
                   label="病状图片">
                   <template slot-scope="scope">
@@ -142,11 +152,13 @@
                     :src="scope.row.image">
                   </template>
                 </el-table-column>
+
               </el-table>
             </el-card>
           </div>
         </el-col>
       </el-row>
+      {{ selectOptions }}
 
       <!-- 病态分析 -->
       <el-row
