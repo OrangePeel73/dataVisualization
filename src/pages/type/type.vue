@@ -12,7 +12,7 @@
         justify="center">
         <el-col
           class="select-wrap"
-          :xs="24" :sm="24" :md="24" :lg="20" :xl="24">
+          :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
           <div
             class="selete grid-content bg-purple">
 
@@ -95,7 +95,7 @@
             <el-button
               type="primary"
               @click="selectSubmit">
-              确认
+              分析
             </el-button>
 
           </div>
@@ -158,7 +158,6 @@
           </div>
         </el-col>
       </el-row>
-      {{ selectOptions }}
 
       <!-- 病态分析 -->
       <el-row
@@ -173,6 +172,7 @@
             :id="type.id"
             class="type grid-content bg-purple">
             <p class="corns-title">农作物病状分析</p>
+            <p class="corns-force">* 展开以查看病情分析</p>
             <el-card class="box-card">
               <!-- table -->
               <el-table

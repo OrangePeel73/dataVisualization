@@ -103,7 +103,7 @@ export default {
             .grid-content, .bg-purple{
               height: 100%;
               display: flex;
-              align-items: center;
+              align-items: flex-end;
               text-align: center;
 
             }

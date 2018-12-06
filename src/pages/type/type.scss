@@ -16,6 +16,11 @@
       margin: 2rem;
       color: #fafafa;
     }
+    .corns-force {
+      text-align: left;
+      font-size: 0.95em;
+      line-height: 1.625rem;
+    }
 
     //  下拉框 row
     .select-container {
@@ -32,7 +37,12 @@
 
           .select {
             display: flex;
-            align-items: center
+            justify-content: space-between;
+            align-items: center;
+            // margin: 0.5rem;
+          }
+          .select + .select {
+            // margin: 0.5rem;;
           }
 
         }

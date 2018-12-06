@@ -1,7 +1,5 @@
-// import itemImg from '@/assets/images/item.jpg'
 import { getCornsImg, getCornsIllness, getCornsAnalysis } from '@/service/api/corns.js'
 import Pagination from '@/components/Pagination/Pagination.vue'
-// let Base64 = require('js-base64').Base64
 
 export default {
   components: {
@@ -34,7 +32,7 @@ export default {
           'filtered': {
             'query': {
               'match': {
-                'ill_id': null
+                'ill_id': 105
               }
             }
           }
@@ -154,6 +152,7 @@ export default {
   created () {
     //  默认玉米 湿腐
     this.handleGetImg(this.selectOptions)
+    this.selectSubmit(this.selectOptions)
   },
   methods: {
 
@@ -166,6 +165,8 @@ export default {
         this.selectOptions.selectCategory = 'corn'
         value = 'corn'
       }
+      // 由于在农作物跟病态编号都做了触发请求
+      // 所以需要对value进行判断，分为value为农作物、根茎叶的value编号时
       // 默认值为玉米时，value值赋值为corn value满足if条件
       if (value && value === this.selectOptions.selectCategory) {
         params.corns = value
@@ -205,12 +206,14 @@ export default {
       // 获取病状名称params
       const data = {}
       data.params = this.selectOptions
+
       // 分页params
       if (page && page.limit && page.limit !== 0 && page.offset) {
         this.listQuery.from = (page.offset - 1) * page.limit
         this.listQuery.size = page.limit
       }
-      // 获取病状
+
+      // 通过this.selectOption获取病状id，再通过id所属的object获取结果
       getCornsIllness(data).then(res => {
         this.listQuery.query.filtered.query.match.ill_id = res
         // 根据病状id以及分页params请求病情分析

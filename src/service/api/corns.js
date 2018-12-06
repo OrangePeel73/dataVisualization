@@ -3,7 +3,6 @@ import api from '../reset.js'
 
 // 获取病状图片
 export function getCornsImg (params) {
-  console.log('params', params)
   return api.get(`/corns/${params.corns}/images/${params.number}`).then(res => {
     return res.data
   })
@@ -11,7 +10,6 @@ export function getCornsImg (params) {
 
 // 获取病症id
 export function getCornsIllness (params) {
-  console.log(params)
   return api.post('/bigdata/bayes', params).then(res => {
     return res.data
   })
@@ -19,7 +17,6 @@ export function getCornsIllness (params) {
 
 //  获取病情分析
 export function getCornsAnalysis (params) {
-  console.log(params)
   return api.post('/corns/ills/corn/_search', params).then(res => {
     return res.data
   })
