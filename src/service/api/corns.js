@@ -14,7 +14,7 @@ export function getCornsIllness (params) {
 }
 
 export function getCornsAnalysis (params) {
-  // console.log(params)
+  console.log(params)
   return api.post('/corns/ills/corn/_search', params).then(res => {
     return res.data
   })

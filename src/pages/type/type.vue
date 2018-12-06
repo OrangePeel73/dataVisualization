@@ -92,7 +92,7 @@
             <!--submit button -->
             <el-button
               type="primary"
-              @click="selectSubmit(selectOptions)">
+              @click="selectSubmit">
               确认
             </el-button>
 
@@ -100,7 +100,7 @@
         </el-col>
       </el-row>
 
-    <!-- img-container -->
+    <!-- 病态图片 -->
       <el-row
         class="cornImg-container"
         :gutter="10"
@@ -147,9 +147,8 @@
           </div>
         </el-col>
       </el-row>
-      <!-- {{ selectOptions }} -->
 
-      <!-- echarts -->
+      <!-- 病态分析 -->
       <el-row
         class="type-container"
         type="flex"
@@ -168,10 +167,7 @@
                 :data="getCornAnalysis.hits"
                 stripe
                 v-loading="loadingCornAnalysis"
-                style="width: 100%"
-                highlight-current-row="true"
-                header-row-style="height: 40px"
-                row-style="height: 40px">
+                style="width: 100%">
 
                  <el-table-column type="expand">
                   <template slot-scope="props">
@@ -218,6 +214,13 @@
                 </el-table-column>
 
               </el-table>
+              <pagination
+                v-show="cornAnalysisTotal>0"
+                :total="cornAnalysisTotal"
+                :page.sync="listQuery.from"
+                :limit.sync="listQuery.size"
+                @pagination="selectSubmit" />
+
             </el-card>
           </div>
         </el-col>

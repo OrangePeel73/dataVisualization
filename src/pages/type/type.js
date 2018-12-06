@@ -1,9 +1,12 @@
 // import itemImg from '@/assets/images/item.jpg'
-import {
-  getCornsImg, getCornsIllness, getCornsAnalysis } from '@/service/api/corns.js'
+import { getCornsImg, getCornsIllness, getCornsAnalysis } from '@/service/api/corns.js'
+import Pagination from '@/components/Pagination/Pagination.vue'
 // let Base64 = require('js-base64').Base64
 
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       type: {
@@ -23,10 +26,12 @@ export default {
       getCornImg: [],
       // 获取的病状分析
       getCornInfo: [],
+      // 分页
+      cornAnalysisTotal: 0,
       //  存储农作物病状的id
-      illId: {
+      listQuery: {
         'from': 0,
-        'size': 1,
+        'size': 10,
         'query': {
           'filtered': {
             'query': {
@@ -151,17 +156,17 @@ export default {
   methods: {
 
     //  获取农作物病状分析
-    selectSubmit (params) {
+    selectSubmit () {
       const data = {}
-      data.params = params
+      data.params = this.selectOptions
       this.loadingCornAnalysis = true
+      console.log('data:', data)
       getCornsIllness(data).then(res => {
-        this.illId.query.filtered.query.match.ill_id = res
-
-        getCornsAnalysis(this.illId).then(response => {
-          // console.log(response)
+        this.listQuery.query.filtered.query.match.ill_id = res
+        console.log(this.listQuery)
+        getCornsAnalysis(this.listQuery).then(response => {
           this.getCornAnalysis = response.hits
-          // console.log(this.getCornAnalysis)
+          this.cornAnalysisTotal = response.hits.total // 分页总数
           this.loadingCornAnalysis = false
         }).catch(error => {
           this.loadingCornAnalysis = false
