@@ -74,6 +74,23 @@
           .select {
             margin: 5rem;
           }
+
+          .el-card {
+            .el-card__body {
+              .el-table {
+                .el-table__body-wrapper {
+                  .el-table__body {
+                    tbody {
+                      tr.el-table__row {
+                        td {
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

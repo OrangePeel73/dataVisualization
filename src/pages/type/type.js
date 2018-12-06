@@ -25,6 +25,8 @@ export default {
       getCornInfo: [],
       //  存储农作物病状的id
       illId: {
+        'from': 0,
+        'size': 1,
         'query': {
           'filtered': {
             'query': {
@@ -157,9 +159,9 @@ export default {
         this.illId.query.filtered.query.match.ill_id = res
 
         getCornsAnalysis(this.illId).then(response => {
-          console.log(response)
+          // console.log(response)
           this.getCornAnalysis = response.hits
-          console.log(this.getCornAnalysis)
+          // console.log(this.getCornAnalysis)
           this.loadingCornAnalysis = false
         }).catch(error => {
           this.loadingCornAnalysis = false
