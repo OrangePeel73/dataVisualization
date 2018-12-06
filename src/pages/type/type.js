@@ -155,15 +155,22 @@ export default {
   },
   methods: {
 
-    //  获取农作物病状分析
-    selectSubmit () {
+    //  获取农作物病状分析 page用于分页上/下页时传参
+    selectSubmit (page) {
       const data = {}
       data.params = this.selectOptions
       this.loadingCornAnalysis = true
-      console.log('data:', data)
+      // console.log('arguments:', arguments)
+      console.log('data:', data, 'page:', page)
+      if (page && page.limit && page.limit !== 0 && page.offset) {
+        this.listQuery.from = (page.offset - 1) * page.limit
+        this.listQuery.size = page.limit
+      }
+
       getCornsIllness(data).then(res => {
         this.listQuery.query.filtered.query.match.ill_id = res
-        console.log(this.listQuery)
+        console.log('传递参数：', this.listQuery, 'res:', res)
+
         getCornsAnalysis(this.listQuery).then(response => {
           this.getCornAnalysis = response.hits
           this.cornAnalysisTotal = response.hits.total // 分页总数
