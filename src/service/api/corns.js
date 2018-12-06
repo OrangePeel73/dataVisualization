@@ -1,5 +1,4 @@
 import api from '../reset.js'
-// import request from '../reset.js';
 
 // 获取病状图片
 export function getCornsImg (params) {

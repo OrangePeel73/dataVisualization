@@ -41,3 +41,10 @@
   width: 100%;
 }
 // end
+
+// input
+.el-input {
+  input.el-input__inner {
+    padding: 0 0.55rem;
+  }
+}

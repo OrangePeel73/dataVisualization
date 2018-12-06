@@ -1,4 +1,4 @@
-#type {
+#question {
   margin-top: 3.5rem;
   padding: 1.5rem;
   display: flex;
@@ -16,6 +16,7 @@
       margin: 2rem;
       color: #fafafa;
     }
+
     .corns-force {
       text-align: left;
       font-size: 0.95em;
@@ -32,47 +33,72 @@
 
       // col
       .select-wrap {
+        // notice
+        .notice {
+          text-align: left;
+          font-size: 0.95em;
+          color: rgba(51, 51, 51, 0.6);
+        }
+
+        //
         .selete {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
           flex-wrap: wrap;
 
-          .select {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            // margin: 0.5rem;
-          }
-          .select + .select {
-            // margin: 0.5rem;;
+          &:nth-child(0){
+            margin: 0.5rem;
           }
 
+          .dosage {
+            width: 12.5rem;
+            max-width: 13.5rem;
+            margin: 0.5rem;
+            input {
+              padding: 0.5rem !important;
+            }
+          }
+
+          .btn {
+            margin: 0.5rem;
+          }
+
+          // .select {
+          //   display: flex;
+          //   justify-content: space-between;
+          //   align-items: center;
+          // }
+
         }
+
         .selete:after {
           content: '';
           // width: 5rem;
-      }
-      }
-    }
-
-    // 农作物病态特征 row
-    .cornImg-container {
-      width: 100%;
-      align-items: center;
-      .cornImg-wrap {
-        .cornImg {
-          margin-bottom: 1rem;
-          .box-card {
-            margin: 1rem 0;
-            .cornImage {
-              height: 5rem;
-              width: auto
-            }
-          }
         }
       }
     }
+
+    // // 农作物病态特征 row
+    // .cornImg-container {
+    //   width: 100%;
+    //   align-items: center;
+
+    //   .cornImg-wrap {
+    //     .cornImg {
+    //       margin-bottom: 1rem;
+
+    //       .box-card {
+    //         margin: 1rem 0;
+
+    //         .cornImage {
+    //           height: 5rem;
+    //           width: auto
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
 
     // 农作物病态分析 row
     .type-container {
@@ -80,10 +106,11 @@
       height: 100%;
       align-items: center;
 
-        // col
+      // col
       .type-wrap {
         .type {
           margin-bottom: 1rem;
+
           .select {
             margin: 5rem;
           }
@@ -95,8 +122,7 @@
                   .el-table__body {
                     tbody {
                       tr.el-table__row {
-                        td {
-                        }
+                        td {}
                       }
                     }
                   }

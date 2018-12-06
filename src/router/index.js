@@ -5,6 +5,7 @@ import Home from '@/pages/home/home.vue'
 import Index from '@/pages/index/index.vue'
 import Type from '@/pages/type/Type.vue'
 import Cities from '@/pages/cities/cities.vue'
+import Question from '@/pages/question/question.vue'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/type',
       name: 'Type',
       component: Type
+    },
+    {
+      path: '/question',
+      name: 'Question',
+      component: Question
     }
   ]
 })

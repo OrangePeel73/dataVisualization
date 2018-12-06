@@ -167,12 +167,12 @@
         :gutter="10">
         <el-col
           class="type-wrap"
-          :xs="24" :sm="23" :md="24" :lg="24" :xl="24">
+          :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
           <div
             :id="type.id"
             class="type grid-content bg-purple">
-            <p class="corns-title">农作物病状分析</p>
-            <p class="corns-force">* 展开以查看病情分析</p>
+            <p class="corns-title">农作物QA</p>
+            <p class="corns-force">* 详情请展开表格</p>
             <el-card class="box-card">
               <!-- table -->
               <el-table

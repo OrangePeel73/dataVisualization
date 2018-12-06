@@ -40,7 +40,8 @@
         :xs="20" :sm="10" :md="10" :lg="9" :xl="9">
         <div
           class="grid-content bg-purple"
-          :style="{'background-image': `url('${itemImg}')`}">
+          :style="{'background-image': `url('${itemImg}')`}"
+          @click="goToRouter('/question')">
           <div class="animate-mask"></div>
           <div class="animate-text">
             <h1 class="animate-title">title</h1>
