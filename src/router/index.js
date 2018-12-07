@@ -3,7 +3,7 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import Home from '@/pages/home/home.vue'
 import Index from '@/pages/index/index.vue'
-import Type from '@/pages/type/Type.vue'
+import Type from '@/pages/type/type.vue'
 import Cities from '@/pages/cities/cities.vue'
 import Yield from '@/pages/yield/yield.vue'
 

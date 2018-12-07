@@ -53,7 +53,7 @@
                   placeholder="磷肥用量10 - 50Kg"
                   auto-complete="off"
                   clearable
-                  v-model="listQuery.lin">
+                  v-model.number="listQuery.lin">
                 </el-input>
               </el-form-item>
               <!-- 复合肥 -->
