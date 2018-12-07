@@ -37,6 +37,15 @@
           </el-col>
         </el-row>
       </el-footer>
+
+      <!-- backToTop -->
+      <transition name="fade" v-show="this.$route === '/cities'">
+      <el-button
+        v-show="backTopShow"
+        class="back-top top-btn"
+        icon="el-icon-arrow-up"
+        @click="backTop()" />
+    </transition>
     </el-container>
   </div>
 </template>
@@ -53,10 +62,17 @@ export default {
   },
   data () {
     return {
+      backTopShow: false,
       Logo,
       BgImg,
       copyright: 'Copyright ©️ DaoCloud道客网络科技有限公司保留所有权利'
     }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     // 点击logo回到首页
@@ -65,12 +81,30 @@ export default {
       this.$router.push({
         path: '/'
       })
+    },
+    backTop () {
+      let back = setInterval(() => {
+        if (document.body.scrollTop || document.documentElement.scrollTop) {
+          document.body.scrollTop -= 20
+          document.documentElement.scrollTop -= 20
+        } else {
+          clearInterval(back)
+        }
+      })
+    },
+    handleScroll () {
+      if (document.documentElement.scrollTop + document.body.scrollTop > 0 || document.documentElement.scrollTop + document.body.scrollTop === 0) {
+        this.backTopShow = true
+      } else {
+        this.backTopShow = false
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

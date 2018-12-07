@@ -50,3 +50,23 @@ td {
   display: none;
 }
 
+// backtotop
+.back-top {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 3.5rem;
+  z-index: 10;
+  padding: 1.05rem !important;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active below version 2.1.8 */
+  {
+  opacity: 0;
+}
+
