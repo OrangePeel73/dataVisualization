@@ -5,7 +5,7 @@ import Home from '@/pages/home/home.vue'
 import Index from '@/pages/index/index.vue'
 import Type from '@/pages/type/Type.vue'
 import Cities from '@/pages/cities/cities.vue'
-import Question from '@/pages/question/question.vue'
+import Yield from '@/pages/yield/yield.vue'
 
 Vue.use(Router)
 
@@ -38,9 +38,9 @@ export default new Router({
       component: Type
     },
     {
-      path: '/question',
-      name: 'Question',
-      component: Question
+      path: '/yield',
+      name: 'Yield',
+      component: Yield
     }
   ]
 })

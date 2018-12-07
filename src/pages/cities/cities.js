@@ -170,7 +170,7 @@ export default {
         series: [{
           name: '温度:',
           type: 'scatter',
-          roam: true, // 放大缩小
+          // roam: true, // 放大缩小
           coordinateSystem: 'bmap',
           data: [],
           geoCoord: {},
@@ -227,12 +227,12 @@ export default {
           },
           zlevel: 1
         }]
-      },
-      // test data
-      testData: {
-        '闫家洞村委会': [110.797, 35.7042, '140882101214', 5.44],
-        '辉川村委会': [114.948, 39.8782, '130726203215', 10.95]
       }
+      // test data
+      // testData: {
+      //   '闫家洞村委会': [110.797, 35.7042, '140882101214', 5.44],
+      //   '辉川村委会': [114.948, 39.8782, '130726203215', 10.95]
+      // }
     }
   },
 
@@ -262,7 +262,6 @@ export default {
           })
         }
       }
-      // console.log('geocoord:' + Array.prototype.isPrototypeOf(res)) // true array
       return res
     },
 

@@ -48,3 +48,8 @@
     padding: 0 0.55rem;
   }
 }
+
+// el-form->el-form-item 修复form中item中后下拉框和inpiut时，上下不对齐的问题
+.el-form-item {
+  margin-bottom: 0;
+}
